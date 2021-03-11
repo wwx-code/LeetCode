@@ -1,5 +1,7 @@
 package com.wwxyh.March;
 
+import java.util.LinkedList;
+
 public class subject02 {
     /**
      * 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，
@@ -57,6 +59,46 @@ public class subject02 {
             curr.next = new ListNode(carry);
         }
         return dummyHead.next;
+    }
+
+    public static LinkedList addTwoNumbers(LinkedList l1, LinkedList l2) {
+        int l1Length = l1.size();
+        int l2Length = l2.size();
+        //判断链表长度，取最大的
+        int max = l1Length > l2Length ? l1Length : l2Length;
+        int min = l1Length > l2Length ? l2Length : l1Length;
+        int current;
+        //是否进位
+        int carry = 0;
+        LinkedList<Integer> l3 = new LinkedList<Integer>();
+        for (int i = max-1;i >= 0;i--){
+            if (i<=min){
+
+                int currentL2 = (int) l2.get(i);
+                //取出当前的节点值
+                int currentL1 = (int) l1.get(i);
+                current = currentL1 + currentL2 + carry;
+                if (current >= 10){
+                    carry = 1;
+                    current = current % 10;
+                }else {
+                    carry = 0;
+                }
+                l3.add(i,current);
+            }else {
+                //取出当前的节点值
+                int currentL1 = (int) l1.get(i);
+                current = currentL1 + carry;
+                if (current >= 10){
+                    carry = 1;
+                    current = current % 10;
+                }else {
+                    carry = 0;
+                }
+                l3.add(i,carry);
+            }
+        }
+        return l3;
     }
 
 }
