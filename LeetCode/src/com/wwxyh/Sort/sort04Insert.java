@@ -28,12 +28,15 @@ public class sort04Insert {
     public static int[] insertSort(int[] array){
         int length = array.length;
         for (int i = 1; i < length; i++) {
+            //取出当前元素，在已经排序的元素序列中从后向前扫描
             int temp = array[i];
             int preIndex = i - 1;
+            //如果该元素（已排序）大于新元素，将该元素移到下一位置；
             while (preIndex >= 0 && array[preIndex] > temp){
                 array[preIndex+1] = array[preIndex];
                 preIndex--;
             }
+            //将新元素插入到该位置后
             array[preIndex+1] = temp;
         }
         return array;
