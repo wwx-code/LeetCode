@@ -79,7 +79,7 @@ public class subject144 {
         //将树的头结点放进去
         stack.push(root);
         //
-        while (stack.isEmpty()){
+        while (!stack.isEmpty()){
             TreeNode node = stack.pop();
             list.add(node.val);
             //栈先进后出的特性，先放入树的右节点
