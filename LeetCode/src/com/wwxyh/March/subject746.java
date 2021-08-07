@@ -40,4 +40,21 @@ public class subject746 {
         }
         return Math.min(dp[cost.length-1],dp[cost.length-2]);
     }
+
+    public static int minCostClimbingStairs2(int[] cost) {
+        int len = cost.length;
+        //dp[i] 表示达到下标i的最小花费
+        int[] dp = new int[len + 1];
+        //初始可以选择下标0或1作为初始阶梯
+        //默认第一步不需要花费
+        dp[0] = 0;
+        dp[1] = 0;
+        //当2<=i<=len时，可以从下标i-1使用cost[i-1]的花费达到下标i(i-1处走一步上到i)，
+        //或者从下标i-2使用cost[i-2]的花费达到下标i（i-2处走两步上到i）
+        //取两者的最小值
+        for (int i = 2; i <= len; i++) {
+            dp[i] = Math.min(dp[i-1] + cost[i-1],dp[i-2] + cost[i-2]);
+        }
+        return dp[len];
+    }
 }
